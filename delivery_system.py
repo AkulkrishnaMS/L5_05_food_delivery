@@ -30,11 +30,11 @@ def create_order(customer, items, order_history=None):
     order_history.append(order_id)
     return order_history[-1]
 
+
 def update_order_status(order_id, status):
-    try:
+    if order_id in orders:
         orders[order_id]["status"] = status
-    except:
-        pass
+
 
 def read_menu_config(file="menu.json"):
     global menu
