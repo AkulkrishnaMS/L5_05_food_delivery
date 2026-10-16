@@ -9,7 +9,9 @@ next_id = 1
 menu = {}
 VALID_STATUSES = ["placed", "cooking", "out_for_delivery", "delivered"]
 
-def create_order(customer, items, order_history=[]):
+def create_order(customer, items, order_history=None):
+    if order_history is None:
+        order_history = []
     global next_id
     total = 0
     for i in items:
