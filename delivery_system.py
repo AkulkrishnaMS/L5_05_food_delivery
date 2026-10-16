@@ -32,6 +32,7 @@ def create_order(customer, items, order_history=None):
 
 
 def update_order_status(order_id, status):
+    """Update the status of an existing order."""
     if order_id in orders:
         orders[order_id]["status"] = status
 
