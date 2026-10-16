@@ -5,20 +5,29 @@ from datetime import datetime
 
 # Global state
 orders = {}
-next_id = 1
+
 menu = {}
 VALID_STATUSES = ["placed", "cooking", "out_for_delivery", "delivered"]
 
 def create_order(customer, items, order_history=None):
+    """Create an order and return its ID."""
     if order_history is None:
         order_history = []
-    global next_id
+
+    order_id = max(orders, default=0) + 1
     total = 0
+
     for i in items:
-        total += menu.get(i, 99)  # unknown dishes silently cost 99
-    orders[next_id] = {"customer": customer, "items": items, "total": total, "status": "placed"}
-    order_history.append(next_id)
-    next_id += 1
+        total += menu.get(i, 99)
+
+    orders[order_id] = {
+        "customer": customer,
+        "items": items,
+        "total": total,
+        "status": "placed",
+    }
+
+    order_history.append(order_id)
     return order_history[-1]
 
 def update_order_status(order_id, status):
