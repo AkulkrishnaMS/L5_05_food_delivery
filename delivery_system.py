@@ -1,3 +1,4 @@
+"""Manage orders for a simple food-delivery system."""
 import json
 import pickle
 from datetime import datetime
